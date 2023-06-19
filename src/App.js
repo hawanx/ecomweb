@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cart from "./pages/cart/Cart";
 import Shop from "./pages/shop/Shop";
 import Navbar from "./components/navbar";
 import "./App.css";
-import products from "./products";
 import { Shop_context } from "./context/Shop_context";
 
 function App() {
