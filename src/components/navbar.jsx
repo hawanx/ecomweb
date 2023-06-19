@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
-import { ShoppingCart, Translate } from "phosphor-react";
+import { ShoppingCart } from "phosphor-react";
 
 export default function navbar() {
   return (
@@ -9,7 +9,7 @@ export default function navbar() {
       <ul className="navbar-list">
         <li className="navbar-item">
           <Link
-            to="/"
+            to="/ecomweb"
             className="navbar-link"
             style={{ position: "relative", left: "9px" }}
           >
@@ -17,7 +17,7 @@ export default function navbar() {
           </Link>
         </li>
         <li className="navbar-item">
-          <Link to="/cart" className="navbar-link">
+          <Link to="/ecomweb/cart" className="navbar-link">
             <ShoppingCart size={30} style={{ margin: "5px" }} />
           </Link>
         </li>

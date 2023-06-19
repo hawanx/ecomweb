@@ -17,7 +17,7 @@ function Shop() {
               <img src={item.productImage} alt="Description" />
               <div className="productName">{item.productName}</div>
               <div className="price">${item.price}</div>
-              <Link to="/cart">
+              <Link to="/ecomweb/cart">
                 <button
                   className="add-to-cart"
                   onClick={() => increasecart(item.id)}
