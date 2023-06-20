@@ -1,16 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { ShoppingCart } from "phosphor-react";
 import SearchBar from "./Searchbar";
 
-export default function navbar() {
+export default function Navbar() {
+  const location = useLocation();
+
   return (
     <nav className="navbar">
       <ul className="navbar-list">
-        <li className="navbar-item">
-          <SearchBar />
-        </li>
+        {location.pathname == "/ecomweb" ? (
+          <li className="navbar-item">
+            <SearchBar />
+          </li>
+        ) : null}
         <li className="navbar-item">
           <Link
             to="/ecomweb"

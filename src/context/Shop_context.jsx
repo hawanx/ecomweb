@@ -10,6 +10,8 @@ export function Shop_context({ children }) {
     cart[i] = 0;
   }
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   const [cartItem, setCartcartItem] = useState(cart);
 
   const increasecart = (id) => {
@@ -32,7 +34,15 @@ export function Shop_context({ children }) {
 
   return (
     <EcomContext.Provider
-      value={{ cartItem, increasecart, decreasecart, removecart, totalcost }}
+      value={{
+        cartItem,
+        increasecart,
+        decreasecart,
+        removecart,
+        totalcost,
+        searchQuery,
+        setSearchQuery,
+      }}
     >
       {children}
     </EcomContext.Provider>

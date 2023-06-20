@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
-import './Searchbar.css';
+import React, { useContext, useState } from "react";
+import "./Searchbar.css";
+import { EcomContext, Shop_context } from "../context/Shop_context";
 
 const SearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const { searchQuery, setSearchQuery } = useContext(EcomContext);
 
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
-  };
-
-  const handleSearch = () => {
-    // Perform search functionality here
-    console.log('Performing search for:', searchQuery);
   };
 
   return (
