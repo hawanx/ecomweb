@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cart from "./pages/cart/Cart";
 import Shop from "./pages/shop/Shop";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import "./App.css";
 import { Shop_context } from "./context/Shop_context";
 

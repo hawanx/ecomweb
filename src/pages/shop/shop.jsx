@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import products from "../../products";
-import "./shop.css";
+import "./Shop.css";
 import { EcomContext } from "../../context/Shop_context";
 
 function Shop() {
