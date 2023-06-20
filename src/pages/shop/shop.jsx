@@ -3,20 +3,28 @@ import { Link } from "react-router-dom";
 import products from "../../products";
 import "./Shop.css";
 import { EcomContext } from "../../context/Shop_context";
+import NoItemFound from "./NoItemfound";
 
 function Shop() {
   const { cartItem, increasecart, searchQuery } = useContext(EcomContext);
+
+  const getFilteredItems = () => {
+    return products.filter((item) =>
+      item.productName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
+  const filteredItems = getFilteredItems();
+
+  console.log(filteredItems.length);
 
   return (
     <div className="shop">
       <div className="shoptitle">Sam shop</div>
       <div className="products">
-        <ul className="product-grid">
-          {products
-            .filter((item) =>
-              item.productName.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-            .map((item) => (
+        {filteredItems.length != 0 ? (
+          <ul className="product-grid">
+            {filteredItems.map((item) => (
               <li key={item.id} className="product-item">
                 <img src={item.productImage} alt="Description" />
                 <div className="productName">{item.productName}</div>
@@ -31,7 +39,10 @@ function Shop() {
                 </Link>
               </li>
             ))}
-        </ul>
+          </ul>
+        ) : (
+          <NoItemFound/>
+        )}
       </div>
     </div>
   );
