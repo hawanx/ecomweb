@@ -15,7 +15,7 @@ function EmptyCart() {
       <p className="empty-cart-text">
         Start shopping and fill it with adorable items.
       </p>
-     <Link to="/ecomweb"> <button className="empty-cart-button">Shop Now</button></Link>
+     <Link to="/"> <button className="empty-cart-button">Shop Now</button></Link>
     </div>
   );
 }

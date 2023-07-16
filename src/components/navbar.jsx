@@ -10,14 +10,14 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <ul className="navbar-list">
-        {location.pathname == "/ecomweb" ? (
+        {location.pathname == "/" ? (
           <li className="navbar-item">
             <SearchBar />
           </li>
         ) : null}
         <li className="navbar-item">
           <Link
-            to="/ecomweb"
+            to="/"
             className="navbar-link"
             style={{ position: "relative", left: "9px" }}
           >
@@ -25,7 +25,7 @@ export default function Navbar() {
           </Link>
         </li>
         <li className="navbar-item">
-          <Link to="/ecomweb/cart" className="navbar-link">
+          <Link to="/cart" className="navbar-link">
             <ShoppingCart size={30} style={{ margin: "5px" }} />
           </Link>
         </li>
