@@ -4,9 +4,11 @@ import products from "../../products";
 import "./Shop.css";
 import { EcomContext } from "../../context/Shop_context";
 import NoItemFound from "./NoItemfound";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Shop() {
   const { cartItem, increasecart, searchQuery } = useContext(EcomContext);
+  const { isAuthenticated } = useAuth0();
 
   const getFilteredItems = () => {
     return products.filter((item) =>
@@ -20,7 +22,7 @@ function Shop() {
 
   return (
     <div className="shop">
-      <div className="shoptitle">Sam shop</div>
+      <div className="shoptitle">Sam shop{isAuthenticated?"Yes":"NO"}</div>
       <div className="products">
         {filteredItems.length != 0 ? (
           <ul className="product-grid">
