@@ -6,7 +6,8 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 import { Shop_context } from "./context/Shop_context";
 import Login from "./pages/Cart/Login/Login";
-import { Auth0Provider } from '@auth0/auth0-react';
+import { Auth0Provider } from "@auth0/auth0-react";
+import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
   return (
@@ -21,8 +22,10 @@ function App() {
         <Router>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Shop />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route element={<PrivateRoutes />}>
+              <Route path="/" element={<Shop />} />
+              <Route path="/cart" element={<Cart />} />
+            </Route>
             <Route path="/login" element={<Login />} />
           </Routes>
         </Router>
