@@ -1,22 +1,33 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Cart from "./pages/cart/Cart";
-import Shop from "./pages/shop/Shop";
+import Cart from "./pages/Cart/Cart";
+import Shop from "./pages/Shop/Shop";
 import Navbar from "./components/Navbar";
 import "./App.css";
 import { Shop_context } from "./context/Shop_context";
+import Login from "./pages/Cart/Login/Login";
+import { Auth0Provider } from '@auth0/auth0-react';
 
 function App() {
   return (
-    <Shop_context>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Shop />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-      </Router>
-    </Shop_context>
+    <Auth0Provider
+      domain="dev-bfp3615nntnrtgzd.us.auth0.com"
+      clientId="ZUGYSQlOqh750jRxogv83zjcbrSTPqrB"
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
+    >
+      <Shop_context>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Shop />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
+      </Shop_context>
+    </Auth0Provider>
   );
 }
 

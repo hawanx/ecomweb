@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
+    "@auth0/auth0-react": "^2.2.0",
     "axios": "^1.4.0",
     "cra-template-cats": "1.1.4",
     "phosphor-react": "^1.4.1",

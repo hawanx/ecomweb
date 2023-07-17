@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import products from "../../products";
-import "./cart.css";
+import "./Cart.css";
 import { EcomContext } from "../../context/Shop_context";
 import EmptyCart from "./EmptyCart";
 
