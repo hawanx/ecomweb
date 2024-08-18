@@ -11,26 +11,15 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
   return (
-    <Auth0Provider
-      domain="dev-bfp3615nntnrtgzd.us.auth0.com"
-      clientId="ZUGYSQlOqh750jRxogv83zjcbrSTPqrB"
-      authorizationParams={{
-        redirect_uri: window.location.origin,
-      }}
-    >
-      <Shop_context>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route element={<PrivateRoutes />}>
-              <Route path="/" element={<Shop />} />
-              <Route path="/cart" element={<Cart />} />
-            </Route>
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </Router>
-      </Shop_context>
-    </Auth0Provider>
+    <Shop_context>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Shop />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </Router>
+    </Shop_context>
   );
 }
 

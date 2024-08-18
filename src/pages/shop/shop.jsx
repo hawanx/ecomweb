@@ -22,7 +22,7 @@ function Shop() {
 
   return (
     <div className="shop">
-      <div className="shoptitle">Sam shop{isAuthenticated?"Yes":"NO"}</div>
+      <div className="shoptitle">Sam shop</div>
       <div className="products">
         {filteredItems.length != 0 ? (
           <ul className="product-grid">
