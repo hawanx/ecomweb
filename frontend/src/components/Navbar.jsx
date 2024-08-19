@@ -7,12 +7,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Navbar() {
   const location = useLocation();
-  const { isAuthenticated } = useAuth0();
-  const { logout } = useAuth0();
   return (
     <nav className="navbar">
       <ul className="navbar-list">
-        {isAuthenticated ? (
+        {/* {isAuthenticated ? (
           <li className="logout" style={{ position: "absolute", left: "10px" }}>
             <button  className="outbut"   
               onClick={() =>
@@ -22,7 +20,7 @@ export default function Navbar() {
               Logout
             </button>
           </li>
-        ) : null}
+        ) : null} */}
 
         {location.pathname == "/" ? (
           <li className="navbar-item">
