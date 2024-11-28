@@ -7,8 +7,6 @@ import "./App.css";
 import { Shop_context } from "./context/Shop_context";
 import Login from "./pages/user/Login";
 import Signup from "./pages/user/SignUp";
-import { Auth0Provider } from "@auth0/auth0-react";
-import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
   return (

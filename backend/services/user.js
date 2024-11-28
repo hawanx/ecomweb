@@ -2,17 +2,19 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const pool = require('../database'); // Import your PostgreSQL pool connection
+const connectToDatabase = require('../database'); // Import the MongoDB connection function
 
 // Register new user
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
-  console.log(req.body);
-  
+
   try {
+    const db = await connectToDatabase();
+    const usersCollection = db.collection('users');
+
     // Check if user already exists
-    const userExists = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-    if (userExists.rows.length > 0) {
+    const userExists = await usersCollection.findOne({ email });
+    if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
@@ -21,15 +23,15 @@ router.post('/signup', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Insert new user into database
-    const newUser = await pool.query(
-      'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *',
-      [username, email, hashedPassword]
-    );
-
+    const newUser = await usersCollection.insertOne({
+      username,
+      email,
+      password: hashedPassword,
+    });
 
     res.status(201).json({
       message: 'User registered successfully',
-
+      userId: newUser.insertedId,
     });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
@@ -41,20 +43,23 @@ router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
+    const db = await connectToDatabase();
+    const usersCollection = db.collection('users');
+
     // Check if user exists
-    const user = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
-    if (user.rows.length === 0) {
+    const user = await usersCollection.findOne({ username });
+    if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
     // Check password
-    const isMatch = await bcrypt.compare(password, user.rows[0].password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
-
+ 
     // Generate JWT token
-    const token = jwt.sign({ id: user.rows[0].id }, "hallo", {
+    const token = jwt.sign({ id: user._id }, "hallo", {
       expiresIn: '1h',
     });
 
@@ -63,7 +68,7 @@ router.post('/login', async (req, res) => {
       token,
     });
   } catch (error) {
-    res.status(500).json({ message: 'lun error', error });
+    res.status(500).json({ message: 'Server error', error });
   }
 });
 
