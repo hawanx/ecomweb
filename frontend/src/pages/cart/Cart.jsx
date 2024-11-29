@@ -2,15 +2,18 @@ import React, { useContext, useState, useEffect } from "react";
 import products from "../../products";
 import "./Cart.css";
 import { EcomContext } from "../../context/Shop_context";
+import { AuthContext } from "../../context/AuthContext";
 import EmptyCart from "./EmptyCart";
 
 export default function Cart() {
-  const { cartItem, increasecart, decreasecart, removecart,totalcost } =
-    useContext(EcomContext);
+  const { cartItem, increasecart, decreasecart, removecart,totalcost } = useContext(EcomContext);
+
+  const {checkAuth} = useContext(AuthContext)
 
   const [cartEmpty, setCartEmpty] = useState(true);
 
   useEffect(() => {
+    checkAuth();
     for (let i = 1; i <= products.length; i++)
       if (cartItem[i] >= 1) {
         setCartEmpty(false);

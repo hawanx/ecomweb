@@ -55,12 +55,12 @@ router.post('/login', async (req, res) => {
     // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: 'Wrong password' });
     }
  
     // Generate JWT token
     const token = jwt.sign({ id: user._id }, "hallo", {
-      expiresIn: '1h',
+      expiresIn: '2h',
     });
 
     res.status(200).json({

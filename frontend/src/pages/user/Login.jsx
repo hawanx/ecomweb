@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./Login.css";
 
 function Login() {
 
-  const {setIsAuthenticated} = useContext(AuthContext)
+  const {setIsAuthenticated, checkAuth, isAuthenticated} = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
     username: "",
@@ -50,7 +50,7 @@ function Login() {
         // Redirect to dashboard after a short delay
         setTimeout(() => {
           navigate("/");
-        }, 2000);
+        }, 500);
       } else {
         const errorData = await response.json();
         console.error("Login failed:", errorData);

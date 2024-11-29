@@ -1,14 +1,16 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import products from "../../products";
 import "./Shop.css";
 import { EcomContext } from "../../context/Shop_context";
+import { AuthContext } from "../../context/AuthContext";
 import NoItemFound from "./NoItemfound";
-import { useAuth0 } from "@auth0/auth0-react";
 
 function Shop() {
   const { cartItem, increasecart, searchQuery } = useContext(EcomContext);
-  const { isAuthenticated } = useAuth0();
+  const { checkAuth } = useContext(AuthContext);
+
+  useEffect(() => {checkAuth();}, []);
 
   const getFilteredItems = () => {
     return products.filter((item) =>
@@ -17,8 +19,6 @@ function Shop() {
   };
 
   const filteredItems = getFilteredItems();
-
-  console.log(filteredItems.length);
 
   return (
     <div className="shop">
