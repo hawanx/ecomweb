@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import "./Login.css";
 
 function Login() {
+
+  const {setIsAuthenticated} = useContext(AuthContext)
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -35,6 +39,7 @@ function Login() {
         const result = await response.json();
         console.log("Login successful:", result);
         setIsSuccess(true);
+        setIsAuthenticated(true);
         setStatusMessage("Login successful! Redirecting to dashboard...");
 
         // Store authentication token if provided
